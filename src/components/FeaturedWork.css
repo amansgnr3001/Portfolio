@@ -1,0 +1,215 @@
+.work__list {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.project {
+  display: grid;
+  grid-template-columns: minmax(0, 1.25fr) minmax(0, 0.75fr);
+  gap: 48px;
+  padding: 44px;
+  overflow: hidden;
+}
+
+.project::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 44px;
+  right: 44px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(129, 140, 248, 0.6), transparent);
+  opacity: 0;
+  transition: opacity 0.4s;
+}
+
+.project:hover::before { opacity: 1; }
+
+.project:not(:has(.project__diagram)) {
+  grid-template-columns: 1fr;
+}
+
+.project__meta {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 18px;
+}
+
+.project__index {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  color: var(--indigo);
+  padding: 3px 10px;
+  border: 1px solid rgba(129, 140, 248, 0.35);
+  border-radius: 6px;
+  background: rgba(129, 140, 248, 0.08);
+}
+
+.project__kicker {
+  font-family: var(--font-mono);
+  font-size: 0.76rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-faint);
+}
+
+.project__title {
+  font-family: var(--font-display);
+  font-size: clamp(1.5rem, 2.6vw, 2rem);
+  line-height: 1.2;
+  letter-spacing: -0.025em;
+  font-weight: 600;
+  margin-bottom: 14px;
+}
+
+.project__desc {
+  color: var(--text-muted);
+  margin-bottom: 22px;
+  max-width: 62ch;
+}
+
+.project__problem {
+  padding: 16px 20px;
+  margin-bottom: 24px;
+  background: rgba(129, 140, 248, 0.06);
+  border-left: 2px solid var(--indigo);
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+}
+
+.project__problem span {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--indigo);
+  margin-bottom: 4px;
+}
+
+.project__problem p {
+  font-size: 0.92rem;
+  color: #c6cbe0;
+}
+
+.project__tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 28px;
+}
+
+.project__links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+/* Pipeline diagram */
+.project__diagram {
+  align-self: stretch;
+  display: flex;
+  flex-direction: column;
+  padding: 24px;
+  background: rgba(0, 0, 0, 0.28);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+}
+
+.project__diagram-title {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-faint);
+  margin-bottom: 20px;
+}
+
+.flow {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  flex: 1;
+  justify-content: center;
+}
+
+.flow__node {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 11px 16px;
+  font-family: var(--font-mono);
+  font-size: 0.84rem;
+  color: #d5d9ea;
+  background: var(--surface);
+  border: 1px solid var(--line-strong);
+  border-radius: 10px;
+  transition: border-color 0.3s, background 0.3s, transform 0.3s var(--ease);
+}
+
+.flow__node:hover {
+  border-color: rgba(129, 140, 248, 0.6);
+  background: rgba(129, 140, 248, 0.1);
+  transform: translateX(4px);
+}
+
+.flow__num {
+  font-size: 0.7rem;
+  color: var(--indigo);
+}
+
+.flow__line {
+  position: relative;
+  width: 1px;
+  height: 16px;
+  margin: 0 0 0 26px;
+  background: linear-gradient(180deg, var(--indigo), var(--cyan));
+  opacity: 0.55;
+}
+
+/* CTA strip */
+.cta-strip {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  margin-top: 24px;
+  padding: 28px 36px;
+  background: linear-gradient(100deg, rgba(99, 102, 241, 0.14), rgba(34, 211, 238, 0.06));
+  border-color: rgba(129, 140, 248, 0.25);
+}
+
+.cta-strip h3 {
+  font-family: var(--font-display);
+  font-size: 1.2rem;
+  letter-spacing: -0.02em;
+  margin-bottom: 2px;
+}
+
+.cta-strip p {
+  color: var(--text-muted);
+  font-size: 0.93rem;
+}
+
+.cta-strip__arrow {
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  border: 1px solid var(--line-strong);
+  background: rgba(255, 255, 255, 0.05);
+  transition: transform 0.3s var(--ease), background 0.3s;
+}
+
+.cta-strip:hover .cta-strip__arrow {
+  transform: translateX(6px);
+  background: rgba(129, 140, 248, 0.25);
+}
+
+@media (max-width: 960px) {
+  .project { grid-template-columns: 1fr; gap: 32px; padding: 30px 24px; }
+  .project::before { left: 24px; right: 24px; }
+}
